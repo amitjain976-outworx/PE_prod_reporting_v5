@@ -1,0 +1,26 @@
+{
+  "name": "mysql-cdc-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "database.hostname": "34.139.219.62",
+    "database.port": "3306",
+    "database.user": "root",
+    "database.password": "StrongRootPass@123",
+    "database.server.id": "184054",
+    "topic.prefix": "mysqlserver1",
+    "database.include.list": "inventory_modules",
+    "table.include.list": "inventory_modules.facilities, inventory_modules.validation_refunds, inventory_modules.payment_sweep_transactions, inventory_modules.permit_rate_descriptions, inventory_modules.user_facilities, inventory_modules.thirdparty_integrations, inventory_modules.facility_types,inventory_modules.ticket_extends, inventory_modules.overstay_tickets, inventory_modules.facility_payment_type, inventory_modules.hours_of_operation, inventory_modules.neighborhoods, inventory_modules.geolocations, inventory_modules.countries, inventory_modules.roles, inventory_modules.users, inventory_modules.tickets, inventory_modules.anet_transactions, inventory_modules.anet_types, inventory_modules.anet_statuses, inventory_modules.lpr_sessions, inventory_modules.lpr_feeds, inventory_modules.permit_vehicles, inventory_modules.permit_requests, inventory_modules.permit_type_master, inventory_modules.permit_rates, inventory_modules.permit_requests_renew_history, inventory_modules.reservations, inventory_modules.user_passes, inventory_modules.mst_vehicle_types, inventory_modules.service_masters, inventory_modules.rates, inventory_modules.events, inventory_modules.event_categories, inventory_modules.promo_codes, inventory_modules.promo_types, inventory_modules.promotions, inventory_modules.promotions_days, inventory_modules.parking_devices, inventory_modules.parking_device_types, inventory_modules.mobile_device_version, inventory_modules.im30_facility_configurations, inventory_modules.gates, inventory_modules.ticket_citation_infraction_reasons, inventory_modules.warning_infraction_reasons, inventory_modules.warning_infractions, inventory_modules.infraction_reasons",
+    "snapshot.mode": "no_data",
+    "include.schema.changes": "false",
+    "tombstones.on.delete": "false",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",
+    "schema.history.internal.kafka.topic": "schema-changes.mysql",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "true",
+    "transforms.unwrap.delete.handling.mode": "rewrite"
+  }
+}

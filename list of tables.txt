@@ -1,0 +1,48 @@
+url: /api/v1/dags/gold_upsert_facilities/dagRuns
+
+url = f"{AIRFLOW_URL}/api/v1/dags/{dag_id}/dagRuns"
+
+gold_upsert_facilities
+
+http://localhost:8081/api/v1/dags/gold_upsert_facilities/dagRuns
+
+
+========================================================================
+
+dim tables:
+1. dim_facility: facilities, facilities_types, geolocations, countries, roles, hours_of_operations, neighborhoods
+2. dim_vehicle: tickets, user_passes, permit_vehicles, reservations, mst_vehicle_types
+3. dim_parker: users
+3. dim_payment_method: facility_payment_types, init_transactions
+4. dim_permit_plan: permit_request, permit_type_master, permit_rates, permit_request_revenue_history
+5. dim_enforcement_agent: 
+6. dim_rateplan:rates,rates_types
+7. dim_time:
+8. dim_date:
+9. dim_device:parking_devices,parking_device_types,mobile_device_version,gates
+10.dim_weather:
+11.dim_parking_product:service_masters
+12.dim_Processor:facility_payment_type,anet_types,anet_transactions
+13.dim_SourceSystem:lpr_feeds,parking_device_types,facility_types,facilities
+14.dim_PartnerAccount:users
+15.Dim_PromoCode:promotions
+16.Dim_Reason:tickets,warning_infractions
+17.Dim_SessionSourceType:
+18.Dim_EventType:events,event_category
+
+
+fact tables:
+
+1. fact_parking_session:Dim_Facility,Dim_Vehicle,Dim_Parker,Dim_Partner_Account,Dim_RatePlan,Dim_ParkingProduct,Dim_Date,Dim Time,tickets,anet_transactions,lpr_sessions,lpr_feeds,users
+
+2.Fact_Payment:Dim_Facility,Dim_Date,Dim Time,FK Dim_PaymentMethod,FK Dim_Processor,Fact_ParkingSession,Fact_Reservation,Fact_PermitSubscription,anet_transactions,anet_statuses,Dim_Reason
+
+3.Fact_ParkingEvent: dim_date,Dim_time,Dim_Facility,Dim_Device,Dim_Vehicle,Dim_Parker,Dim_event,Dim_SourceSystem,events
+
+4.Fact_Reservation:Dim_Facility,Dim_Parker,Dim_Vehicle,Dim_RatePlan,Dim_ParkingProduct,dim_date,reservations
+
+5.Fact_PermitSubscription:dim_customer_account,Dim_Parker,Dim_Facility,Dim_ParkingProduct,permit_requests,anet_transactions
+
+6.Fact_ValidationRedemption:Dim_Date,Dim_Facility,Dim_PromoCode,Fact_ParkingSession,Fact_Reservation,promotions_days,tickets,promotions
+
+
