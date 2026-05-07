@@ -1,0 +1,4 @@
+kafka-python
+mysql-connector-python
+requests
+python-dotenv
